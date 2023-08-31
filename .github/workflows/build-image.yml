@@ -16,11 +16,6 @@ jobs:
         run: |
           docker build --no-cache -t ${{ github.sha }} .
 
-      - name: Test variables
-        run: |
-          echo ${{ github.ref }}
-          echo ${{ format('refs/heads/{0}', env.BRANCH) }}
-          echo ${{ env.ENDPOINT }}
       - name: Tag image
         if: ${{ github.ref == format('refs/heads/{0}', env.BRANCH) && env.ENDPOINT != 'user/endpoint' }}
         run: |
