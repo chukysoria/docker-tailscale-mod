@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-if [ ! -f /usr/bin/jq ] || [ ! -f /usr/bin/iptables ]; then
+if [ ! -f /usr/bin/jq ] || ([ ! -f /usr/bin/iptables ] || [ ! -f /usr/sbin/iptables ] ); then
     ## Ubuntu
     if [ -f /usr/bin/apt ]; then
         echo "\
