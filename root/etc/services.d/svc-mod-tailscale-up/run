@@ -1,6 +1,4 @@
 #!/usr/bin/with-contenv bash
-s6-svc -O /var/run/s6/services/svc-tailscale-up
-
 FLAGS=""
 
 # configure `tailscale up`
@@ -45,6 +43,5 @@ if [ -v TAILSCALE_FUNNEL ]; then
     tailscale funnel 443 on
 fi
 
-
-
-
+# Wait forever
+while true; do sleep 2073600; done
