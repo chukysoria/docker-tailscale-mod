@@ -19,6 +19,9 @@ case `uname -m` in
     riscv64)
         GOARCH="riscv64"
         ;;
+    armv7l)
+        GOARCH="arm"
+        ;;
     *)
         echo "Unknown CPU type $(uname -m), please file a bug at https://github.com/tailscale-dev/docker-mod"
         exit 125
