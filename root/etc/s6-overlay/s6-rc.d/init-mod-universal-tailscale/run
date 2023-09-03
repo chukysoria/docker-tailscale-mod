@@ -1,9 +1,10 @@
 #!/usr/bin/with-contenv bash
 
-if [ ! -f /usr/bin/jq ] || ([ ! -f /usr/bin/iptables ] || [ ! -f /usr/sbin/iptables ] ); then
+if [ ! -f /usr/bin/curl ] || [ ! -f /usr/bin/jq ] || [ ! -f /usr/sbin/iptables ]; then
     ## Ubuntu
     if [ -f /usr/bin/apt ]; then
         echo "\
+            curl \
             jq \
             iptables" >> /mod-repo-packages-to-install.list
 
@@ -11,6 +12,7 @@ if [ ! -f /usr/bin/jq ] || ([ ! -f /usr/bin/iptables ] || [ ! -f /usr/sbin/iptab
     # Alpine
     if [ -f /sbin/apk ]; then
         echo "\
+            curl \
             jq \
             iptables" >> /mod-repo-packages-to-install.list
     fi
