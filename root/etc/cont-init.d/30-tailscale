@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv bash
 
 # Check for curl, jq, iptables
-if [ ! -f /usr/bin/curl ] || [ ! -f /usr/bin/jq ] || [ ! -f /usr/bin/iptables ]; then
+if [ ! -f /usr/bin/curl ] || [ ! -f /usr/bin/jq ] || [ ! -f /usr/sbin/iptables ]; then
   echo "[mod-tailscale] Curl/JQ/IPTables was not found on this system"
   if [ -f /usr/bin/apt ]; then
     ## Ubuntu
@@ -20,10 +20,6 @@ if [ ! -f /usr/bin/curl ] || [ ! -f /usr/bin/jq ] || [ ! -f /usr/bin/iptables ];
 fi
 
 set -euo pipefail
-
-dir="$(mktemp -d)"
-pushd .
-cd "${dir}"
 
 GOARCH=""
 
@@ -50,14 +46,28 @@ esac
 tarball="$(curl 'https://pkgs.tailscale.com/stable/?mode=json' | jq -r .Tarballs.${GOARCH})"
 version="$(echo ${tarball} | cut -d_ -f2)"
 
-echo "[mod-tailscale] Downloading Tailscale ${version}"
+if [ -f /usr/bin/tailscale ]; then
+  installed_version="$(tailscale -V | head -n1)"
+else
+  installed_version=""
+fi
 
-curl "https://pkgs.tailscale.com/stable/${tarball}" -o tailscale.tgz
+if [[ $version == $installed_version ]]; then
+  echo "[mod-tailscale] Tailscale ${version} already installed"
+else
+  dir="$(mktemp -d)"
+  pushd .
+  cd "${dir}"
+  
+  echo "[mod-tailscale] Downloading Tailscale ${version}"
 
-tar xzf tailscale.tgz
+  curl "https://pkgs.tailscale.com/stable/${tarball}" -o tailscale.tgz
 
-cp -vrf "tailscale_${version}_${GOARCH}"/tailscale /usr/bin/tailscale
-cp -vrf "tailscale_${version}_${GOARCH}"/tailscaled /usr/sbin/tailscaled
+  tar xzf tailscale.tgz
 
-popd
-rm -rf "${dir}"
+  cp -vrf "tailscale_${version}_${GOARCH}"/tailscale /usr/bin/tailscale
+  cp -vrf "tailscale_${version}_${GOARCH}"/tailscaled /usr/sbin/tailscaled
+
+  popd
+  rm -rf "${dir}"
+fi
