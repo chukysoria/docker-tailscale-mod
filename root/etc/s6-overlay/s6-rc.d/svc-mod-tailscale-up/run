@@ -31,13 +31,8 @@ if [ -v TAILSCALE_SERVE_PORT ] && [ -v TAILSCALE_SERVE_MODE ]; then
     else
         tailscale serve "${TAILSCALE_SERVE_MODE}":443 http://localhost:"${TAILSCALE_SERVE_PORT}"
     fi
+    # configure funnel
+    if [ -v TAILSCALE_FUNNEL ]; then
+        tailscale funnel 443 on
+    fi
 fi
-
-# configure funnel
-if [ -v TAILSCALE_FUNNEL ]; then
-    tailscale funnel 443 on
-fi
-
-
-
-
