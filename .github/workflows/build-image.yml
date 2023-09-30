@@ -16,7 +16,7 @@ jobs:
     steps:
       - name: Set current date as env variable
         id: build-time
-        run: echo "NOW=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUTS
+        run: echo "NOW=$(date +'%Y-%m-%d')" >> "$GITHUB_OUTPUT"
 
       - name: Login to Github Container Repo
         uses: docker/login-action@v2.0.0
