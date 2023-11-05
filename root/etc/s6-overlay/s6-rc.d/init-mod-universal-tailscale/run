@@ -6,7 +6,7 @@ if [ ! -f /usr/bin/curl ] || [ ! -f /usr/bin/jq ] || [ ! -f /usr/sbin/iptables ]
         echo "\
             curl \
             jq \
-            iptables" >> /mod-repo-packages-to-install.list
+            nftables" >> /mod-repo-packages-to-install.list
 
     fi
     # Alpine
@@ -14,6 +14,6 @@ if [ ! -f /usr/bin/curl ] || [ ! -f /usr/bin/jq ] || [ ! -f /usr/sbin/iptables ]
         echo "\
             curl \
             jq \
-            iptables" >> /mod-repo-packages-to-install.list
+            nftables" >> /mod-repo-packages-to-install.list
     fi
 fi
