@@ -9,4 +9,4 @@ on:
 jobs:
   update_release_draft:
     name: Release
-    uses: chukysoria/workflows/.github/workflows/new-release.yml@v1.0.25
+    uses: chukysoria/workflows/.github/workflows/new-release.yml@v1.0.26
