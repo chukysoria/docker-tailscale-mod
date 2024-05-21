@@ -10,3 +10,5 @@ jobs:
   update_release_draft:
     name: Release
     uses: chukysoria/workflows/.github/workflows/new-release.yml@v1.0.30
+    with:
+      simple-build: true
