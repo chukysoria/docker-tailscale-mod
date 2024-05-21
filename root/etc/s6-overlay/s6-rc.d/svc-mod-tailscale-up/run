@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv bash
 
-FLAGS=""
+FLAGS="--stateful-filtering"
 
 # configure `tailscale up`
 if ! [ -v TAILSCALE_AUTHKEY ]; then
