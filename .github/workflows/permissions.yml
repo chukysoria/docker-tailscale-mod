@@ -7,4 +7,4 @@ on:
       - '**/check'
 jobs:
   permission_check:
-    uses: chukysoria/workflows/.github/workflows/init-svc-executable-permissions.yml@v1.0.37
+    uses: chukysoria/workflows/.github/workflows/init-svc-executable-permissions.yml@v1.0.38
