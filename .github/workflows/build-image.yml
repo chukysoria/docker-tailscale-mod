@@ -8,4 +8,4 @@ on:
 jobs:
   build-and-deploy:
     name: Build and deploy
-    uses: chukysoria/workflows/.github/workflows/build-image-simple.yml@55ec1c75a416ed417a5dae439306a1c493d78eab # v1.1.18
+    uses: chukysoria/workflows/.github/workflows/build-image-simple.yml@cd870671c263b80aec39e2332cbbc02cef9287ad # v1.1.19
