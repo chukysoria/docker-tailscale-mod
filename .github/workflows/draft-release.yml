@@ -9,6 +9,6 @@ on:
 jobs:
   update_release_draft:
     name: Release
-    uses: chukysoria/workflows/.github/workflows/new-release.yml@e1e702f1203019373b58d387d98f56883db43607 # v1.1.40
+    uses: chukysoria/workflows/.github/workflows/new-release.yml@63ded7f0727ba0cff982f47f2f03b1f0f7f44be1 # v1.1.41
     with:
       simple-build: true
